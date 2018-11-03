@@ -1,7 +1,10 @@
-const pkg = require('./package')
+const pkg = require("./package");
+
+// https://github.com/buefy/nuxt-buefy/issues/32
+global.File = typeof window === "undefined" ? Object : window.File;
 
 module.exports = {
-  mode: 'universal',
+  mode: "universal",
 
   env: {},
 
@@ -10,31 +13,34 @@ module.exports = {
    */
   head: {
     title: pkg.name,
-    meta: [{
-        charset: 'utf-8'
+    meta: [
+      {
+        charset: "utf-8"
       },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        name: "viewport",
+        content: "width=device-width, initial-scale=1"
       },
       {
-        hid: 'description',
-        name: 'description',
+        hid: "description",
+        name: "description",
         content: pkg.description
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    link: [
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/favicon.ico"
+      }
+    ]
   },
 
   /*
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#fff'
+    color: "#fff"
   },
 
   /*
@@ -45,18 +51,16 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/axios'
-  ],
+  plugins: ["~/plugins/axios"],
 
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios',
+    "@nuxtjs/axios",
     // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy'
+    "nuxt-buefy"
   ],
   /*
    ** Axios module configuration
@@ -76,29 +80,28 @@ module.exports = {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
-          enforce: 'pre',
+          enforce: "pre",
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
+          loader: "eslint-loader",
           exclude: /(node_modules)/
-        })
+        });
       }
     }
   },
 
-  serverMiddleware: [
-    '~/api/index.js'
+  serverMiddleware: ["~/api/index.js"],
+
+  jwt: [
+    {
+      secret: "8e05ZTA9G9F5AgV49MRv",
+      ttl: 3600
+    }
   ],
 
-  jwt: [{
-    secret: '8e05ZTA9G9F5AgV49MRv',
-    ttl: 3600
-  }],
-
-  mongo: [{
-    host: 'localhost',
-    port: null,
-    database: 'test',
-    user: null,
-    password: null
-  }]
-}
+  mongo: [
+    {
+      server: "localhost",
+      database: "test"
+    }
+  ]
+};

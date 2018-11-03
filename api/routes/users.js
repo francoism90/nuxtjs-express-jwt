@@ -1,4 +1,4 @@
-module.exports = ({ router, auth, models }) => {
+module.exports = ({ router, auth }) => {
   router.all("*", auth.verifyJWTMiddleware);
 
   router.get("/", (req, res) => {

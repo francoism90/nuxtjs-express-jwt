@@ -1,11 +1,20 @@
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const auth = require('../utils/auth')
 
-mongoose.connect('mongodb://localhost/test');
+const config = require("../nuxt.config.js");
 
-const User = require('./user')({ mongoose, Schema, auth })
+const server = config.mongo.reduce(
+  (server, mongo) => mongo.server || server,
+  "127.0.0.1"
+);
 
-module.exports = { User }
+const database = config.mongo.reduce(
+  (database, mongo) => mongo.database || database,
+  "test"
+);
+
+mongoose.connect(`mongodb://${server}/${database}`);
+
+const User = require("./user")({ mongoose, Schema });
+
+module.exports = { User };
