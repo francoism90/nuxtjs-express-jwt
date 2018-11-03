@@ -73,9 +73,6 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
@@ -89,8 +86,16 @@ module.exports = {
     }
   },
 
+  /*
+  ** Creates a connect instance
+  */
   serverMiddleware: ["~/api/index.js"],
 
+  /*
+   ** JWT configuration
+   * secret: (string) used to sign and verify token
+   * ttl: (integer) time to keep a token valid
+   */
   jwt: [
     {
       secret: "8e05ZTA9G9F5AgV49MRv",
@@ -98,6 +103,9 @@ module.exports = {
     }
   ],
 
+  /*
+   ** MongoDB configuration
+   */
   mongo: [
     {
       server: "localhost",
