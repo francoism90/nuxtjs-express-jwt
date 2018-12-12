@@ -1,58 +1,102 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
-      <div
-        v-for="(feature, i) of features"
-        :key="i"
-        class="column"
-      >
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title has-text-grey">
-              {{ feature.title }}
-            </p>
-          </header>
-          <div class="card-content">
-            <div class="content has-text-centered">
-              <b-icon
-                :icon="feature.icon"
-                size="is-large"
-                type="is-primary"
-              />
-            </div>
-          </div>
-        <footer class="card-footer" />   </div>
-  </div></div></section>
+  <section class="container">
+    <div>
+      <a href="https://nuxtjs.org/" target="_blank">
+        <img src="~/assets/nuxt-logo.png" alt="Nuxt.js Logo">
+      </a>
+      <span>+</span>
+      <a href="http://www.typescriptlang.org/" target="_blank">
+        <img src="~/assets/ts-logo.png" alt="TypeScript Logo">
+      </a>
+
+      <h1 class="title">
+        Nuxt Starter {{ lang }}
+      </h1>
+      <p>A Nuxt 2.0+ class-based template with {{ lang }} integration</p>
+
+      <div class="links">
+        <p>
+          Template created by: <a href="https://daveberning.io" target="_blank" class="button--grey">
+            Dave Berning
+          </a> (<a href="https://twitter.com/daveberning" target="_blank" class="button--grey">
+            daveberning.io
+          </a>)
+        </p>
+      </div>
+
+      <hr>
+
+      <h2>Technolgies Used</h2>
+      <ButtonList :links="links" />
+    </div>
+  </section>
 </template>
 
-<script>
-export default {
-  name: "HomePage",
-  data() {
-    return {
-      features: [
-        {
-          icon: "github-circle",
-          title: "Free",
-          content: `<span>Open source on <a href="https://github.com/buefy/buefy"> GitHub</a></span>`
-        },
-        {
-          icon: "cellphone-link",
-          title: "Responsive",
-          content: `<span><b class="has-text-grey">Every</b> component is responsive</span>`
-        },
-        {
-          icon: "alert-decagram",
-          title: "Modern",
-          content: `<span>Built with <a href="https://vuejs.org/">Vue.js</a> and <a href="http://bulma.io/">Bulma</a></span>`
-        },
-        {
-          icon: "arrange-bring-to-front",
-          title: "Lightweight",
-          content: `<span>No other internal dependency</span>`
-        }
-      ]
-    };
+<script lang="ts">
+import { Vue, Component } from 'nuxt-property-decorator';
+import { Action, State, Getter } from 'vuex-class';
+import { Link } from '~/types';
+import ButtonList from '~/components/ButtonList.vue';
+
+@Component({
+  components: {
+    ButtonList,
+  }
+})
+export default class Index extends Vue {
+  @State(state => state.language) lang: string;
+  @Action updateLanguage;
+  @Getter developer: string;
+
+  links: Link[] = [
+    { text: 'Vue.js', url: 'https://vuejs.org/', },
+    { text: 'TypeScript', url: 'http://www.typescriptlang.org/', },
+    { text: 'Vuex', url: 'https://vuex.vuejs.org/', },
+    { text: 'Vue Class Component', url: 'https://github.com/vuejs/vue-class-component', },
+    { text: 'Nuxt Property Decorators', url: 'https://github.com/nuxt-community/nuxt-property-decorator', },
+    { text: 'Vuex Property Decorators', url: 'https://github.com/ktsn/vuex-class', }
+  ];
+
+  mounted(): void {
+    this.updateLanguage('TypeScript');
   }
 };
 </script>
+
+<style lang="scss" scoped>
+section {
+  margin-top: 2rem;
+  text-align: center;
+
+  h1 {
+    margin: 1rem 0;
+    font-size: 3rem;
+  }
+}
+
+img {
+  max-width: 200px;
+  vertical-align: bottom;
+}
+
+p {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.links p {
+  display: inline;
+  font-size: 1rem;
+}
+
+span {
+  font-size: 5rem;
+  margin: 2rem;
+  display: inline-block;
+  color: darken(#ccc, 50%);
+}
+
+hr {
+  margin: 1rem 0;
+}
+</style>
