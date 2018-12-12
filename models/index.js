@@ -13,7 +13,10 @@ const database = config.mongo.reduce(
   "test"
 );
 
-mongoose.connect(`mongodb://${server}/${database}`);
+mongoose.connect(
+  `mongodb://${server}/${database}`,
+  { useNewUrlParser: true }
+);
 
 const User = require("./user")({ mongoose, Schema });
 

@@ -1,7 +1,7 @@
 {
   "name": "nuxtjs-express-jwt",
   "version": "0.0.1",
-  "description": "My cat&#39;s meow Nuxt.js project",
+  "description": "My cat's meow Nuxt.js project",
   "author": "francoism90",
   "private": true,
   "scripts": {
@@ -16,26 +16,33 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "@types/node": "^10.12.10",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "cross-env": "^5.2.0",
+    "node-sass": "^4.10.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.16",
     "nuxt": "^2.3.4",
     "nuxt-buefy": "^0.3.2",
-    "store": "^2.0.12"
+    "nuxt-property-decorator": "^1.3.1",
+    "nuxt-ts": "^0.1.0",
+    "sass-loader": "^7.1.0",
+    "ts-loader": "^5.3.1",
+    "typescript": "^3.2.2",
+    "store": "^2.0.12",
+    "vue-loader": "^15.4.2",
+    "vuex-class": "^0.3.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.10.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-loader": "^2.1.1",
-    "eslint-plugin-flowtype": "^3.2.0",
-    "eslint-plugin-html": "^5.0.0",
-    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-vue": "^5.0.0",
+    "fork-ts-checker-webpack-plugin": "^0.5.1",
     "nodemon": "^1.18.8",
     "prettier": "1.15.3"
   }

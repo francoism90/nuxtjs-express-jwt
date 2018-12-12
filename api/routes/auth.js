@@ -12,8 +12,8 @@ module.exports = ({ router, auth, models }) => {
     const { email, password } = req.body;
 
     models.User.findByEmail(email)
-      .then(
-        user => (!user ? Promise.reject(new Error("User not found.")) : user)
+      .then(user =>
+        !user ? Promise.reject(new Error("User not found.")) : user
       )
       .then(user => auth.checkUserAuthentication(password, user))
       .then(user => {
